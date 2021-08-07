@@ -31,12 +31,13 @@ router.get("/register", (req, res) => {
 
 router.post("/register", (req, res) => {
 
-    User.register(new User({ username: req.body.username, phone: req.body.phone }), req.body.password, function(err, user) {
+    User.register(new User({ username: req.body.username, phone: req.body.phone }), req.body.password, async function(err, user) {
         if (err) {
             console.log(err);
             res.render("registrationform");
         }
         passport.authenticate("local")(req, res, function() {
+            user.save();
             console.log("Following User has been registerd");
             console.log(User)
             res.redirect("/");
