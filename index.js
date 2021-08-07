@@ -38,8 +38,35 @@ app.get('/', (req, res) => {
 
 
 //using custom routes
-app.use('/register', registration);
+app.use('/registration', registration);
 app.use('/testroute', routes);
+
+
+//registration methods
+
+
+app.use(session({
+    secret: "Any normal Word", //decode or encode session
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 2 * 60 * 1000
+    }
+}));
+
+
+passport.serializeUser(User.serializeUser()); //session encoding
+passport.deserializeUser(User.deserializeUser()); //session decoding
+passport.use(new LocalStrategy(User.authenticate()));
+
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
 
 const port = process.env.PORT || 3000;
 
