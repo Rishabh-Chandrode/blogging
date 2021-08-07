@@ -1,9 +1,14 @@
 const express = require('express');
+const routes = require('./routes/routes');
 
 // Database
 const connectDB = require('./config/db');
 
 const app = express();
+
+
+
+app.use('/testroute', routes);
 
 //connect to data base
 
