@@ -21,6 +21,13 @@ router.use(bodyParser.urlencoded({ extended: true }))
 router.use(passport.initialize());
 router.use(passport.session());
 
+//current User
+router.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+})
+
+
 
 
 
@@ -44,6 +51,51 @@ router.post("/register", (req, res) => {
         })
     })
 })
+
+
+
+// login
+
+
+
+
+
+// router.get("/userprofile", isLoggedIn, (req, res) => {
+//     res.render("userprofile");
+// });
+
+
+// //Auth Routes
+
+
+// router.get("/login", (req, res) => {
+//     res.render("login");
+// });
+// router.post("/login", passport.authenticate("local", {
+//     successRedirect: "/registration/userprofile",
+//     failureRedirect: "/registration/login"
+// }), function(req, res) {});
+
+
+// router.get('/userprofile', (req, res) => {
+//     res.render('userprofile');
+// });
+
+// //logout
+// app.get("/logout", (req, res) => {
+//     req.logout();
+//     res.redirect("/");
+// });
+
+
+// //MIDDLEWARE
+// function isLoggedIn(req, res, next) {
+//     if (req.isAuthenticated()) {
+//         return next();
+//     }
+//     res.redirect("/login");
+// }
+
 
 
 

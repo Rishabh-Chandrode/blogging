@@ -13,6 +13,7 @@ const session = require("express-session");
 const User = require("./models/user");
 
 // Custom routes
+//const login = require('./routes/login');
 const routes = require('./routes/routes');
 const registration = require('./routes/registration');
 
@@ -38,6 +39,7 @@ app.get('/', (req, res) => {
 
 
 //using custom routes
+//app.use('/login', login);
 app.use('/registration', registration);
 app.use('/testroute', routes);
 
@@ -64,6 +66,48 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+//-----------------------------------------------
+
+
+app.get("/userprofile", isLoggedIn, (req, res) => {
+    res.render("userprofile");
+});
+
+
+//Auth Routes
+
+
+app.get("/login", (req, res) => {
+    res.render("login");
+});
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/userprofile",
+    failureRedirect: "/login"
+}), function(req, res) {});
+
+
+app.get('/userprofile', (req, res) => {
+    res.render('userprofile');
+});
+
+//logout
+app.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/");
+});
+
+
+//MIDDLEWARE
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect("/login");
+}
+
+
+//-------------------------------
 
 
 
