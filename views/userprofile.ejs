@@ -5,20 +5,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/home.css">
     <title>Document</title>
 </head>
 
 <body>
-    <h1>
-        User Profile
-    </h1>
-    <p>
-        After Login the user will reach here.
-    </p>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/logout">Logout</a></li>
-    </ul>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Blogs</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+            <div style="text-align: right;" id="navbarNav">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <img src="/images/pexels-pixabay-262508.jpg" alt="blog image" id="headerimg">
+    </div>
+
+
 </body>
 
 </html>
+
+
+
+
+
+<!-- <a class="nav-link" href="/logout">Logout</a> -->
