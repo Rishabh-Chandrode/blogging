@@ -71,7 +71,8 @@ app.use(passport.session());
 
 
 app.get("/userprofile", isLoggedIn, (req, res) => {
-    res.render("userprofile");
+    var user = req.user;
+    res.render("userprofile", { title: 'userprofile', user: user });
 });
 
 
@@ -88,7 +89,8 @@ app.post("/login", passport.authenticate("local", {
 
 
 app.get('/userprofile', (req, res) => {
-    res.render('userprofile');
+    res.render('userprofile', { user: req.params.username });
+
 });
 
 //logout
