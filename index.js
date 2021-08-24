@@ -16,6 +16,7 @@ const User = require("./models/user");
 //const login = require('./routes/login');
 const routes = require('./routes/routes');
 const registration = require('./routes/registration');
+const Article = require('./models/blog');
 
 // Database
 const connectDB = require('./config/db');
@@ -93,11 +94,25 @@ app.get('/userprofile', (req, res) => {
 
 });
 
-
+// New Article
 app.get('/new', (req, res) => {
     res.render("new", { title: 'userprofile', user: req.user })
 })
 
+app.post('/new', async(req, res) => {
+    req.article = new Article()
+    let article = req.article
+    article.username = req.user
+    article.title = req.body.title
+    article.description = req.body.description
+    article.markdown = req.body.markdown
+
+    try {
+        article = await article.save()
+    } catch (e) {
+        console.log(e)
+    }
+})
 
 //logout
 app.get("/logout", (req, res) => {

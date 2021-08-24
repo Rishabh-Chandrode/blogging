@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 
 const articleSchema = new mongoose.Schema({
     username: {
-        type: String
+        type: String,
+
     },
     title: {
         type: String,
@@ -19,11 +20,7 @@ const articleSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    createdby: {
-        type: String,
 
-
-    }
 })
 
 
