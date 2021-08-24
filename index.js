@@ -95,8 +95,9 @@ app.get('/userprofile', (req, res) => {
 
 
 app.get('/new', (req, res) => {
-    res.render("new", { title: 'new', user: req.user })
+    res.render("new", { title: 'userprofile', user: req.user })
 })
+
 
 //logout
 app.get("/logout", (req, res) => {
