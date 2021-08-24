@@ -109,6 +109,8 @@ app.post('/new', async(req, res) => {
 
     try {
         article = await article.save()
+        var user = req.user;
+        res.render("userprofile", { title: 'userprofile', user: user });
     } catch (e) {
         console.log(e)
     }
