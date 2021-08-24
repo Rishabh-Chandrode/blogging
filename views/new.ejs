@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Blog </title>
+</head>
+
+
+<body>
+    <form action="/new" method="POST">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" disabled value="<%= user.username %>" name="createdby" class="form-control">
+        </div>
+        <div class="form-group">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input required type="text" name="title" id="title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="markdown">Markdown</label>
+                <textarea required name="markdown" id="markdown" class="form-control"></textarea>
+            </div>
+
+            <a href="/" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+</body>
+
+</html>
