@@ -34,8 +34,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 
 
-app.get('/', (req, res) => {
-    res.render('home')
+app.get('/', async(req, res) => {
+    const articles = await Article.find().sort({ createdAt: 'desc' })
+    res.render('home', { articles: articles })
 })
 
 

@@ -7,3 +7,24 @@ body {
     height: 60vh;
     width: 100vw;
 }
+
+
+/* 
+.blos-section {
+    display: flex;
+    justify-content: stretch;
+} */
+
+.card {
+    /* margin: 4rem; */
+    display: inline-block;
+}
+
+.blogs-section {
+    display: grid;
+    margin: 4rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 25px;
+    grid-row-gap: 30px;
+}

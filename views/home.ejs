@@ -15,11 +15,25 @@
         <%- include('partials/_navbar') %>
     </div>
 
-    <div>
+    <!-- <div>
         <img src="/images/pexels-pixabay-262508.jpg" alt="blog image" id="headerimg">
-    </div>
+    </div> -->
     <section class="blogs-section">
 
+        <% articles.forEach(article => { %>
+            <div class="card" style="width: 22rem;">
+                <img class="card-img-top" src="/images/pexels-pixabay.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= article.title %>
+                    </h5>
+                    <p class="card-text">
+                        <%= article.description %>
+                    </p>
+                    <a href="#" class="btn btn-primary">Read more</a>
+                </div>
+            </div>
+            <% }) %>
 
     </section>
 </body>
