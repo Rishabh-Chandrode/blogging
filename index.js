@@ -39,6 +39,9 @@ app.get('/', async(req, res) => {
     res.render('home', { articles: articles })
 })
 
+app.get('/show', (req, res) => {
+    res.render('show');
+})
 
 //using custom routes
 //app.use('/login', login);
