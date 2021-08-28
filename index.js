@@ -11,6 +11,7 @@ const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
 const session = require("express-session");
 const User = require("./models/user");
+var ObjectID = require('mongodb').ObjectID;
 
 // Custom routes
 //const login = require('./routes/login');
@@ -39,9 +40,20 @@ app.get('/', async(req, res) => {
     res.render('home', { articles: articles })
 })
 
-app.get('/show', (req, res) => {
-    res.render('show');
+
+// app.get('/show', (req, res) => {
+//     res.render('show');
+// })
+
+app.get('/:id', async(req, res) => {
+
+    const article = await Article.findOne({ _id: ObjectID(req.params.id) })
+    console.log(article.id)
+    if (article == null) res.redirect('/')
+    res.render('show', { article: article })
 })
+
+
 
 //using custom routes
 //app.use('/login', login);

@@ -30,7 +30,8 @@
                     <p class="card-text">
                         <%= article.description %>
                     </p>
-                    <a href="show" class="btn btn-primary">Read more</a>
+                    <a href="<%= article.id %>" class="btn btn-primary">Read more <%= article.id %>
+                     </a>
                 </div>
             </div>
             <% }) %>
