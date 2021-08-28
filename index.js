@@ -48,7 +48,7 @@ app.get('/', async(req, res) => {
 app.get('/:id', async(req, res) => {
 
     const article = await Article.findOne({ _id: ObjectID(req.params.id) })
-    console.log(article.id)
+
     if (article == null) res.redirect('/')
     res.render('show', { article: article })
 })
