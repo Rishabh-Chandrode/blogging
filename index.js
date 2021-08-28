@@ -45,14 +45,6 @@ app.get('/', async(req, res) => {
 //     res.render('show');
 // })
 
-app.get('/:id', async(req, res) => {
-
-    const article = await Article.findOne({ _id: ObjectID(req.params.id) })
-
-    if (article == null) res.redirect('/')
-    res.render('show', { article: article })
-})
-
 
 
 //using custom routes
@@ -105,6 +97,24 @@ app.post("/login", passport.authenticate("local", {
 }), function(req, res) {});
 
 
+
+//logout
+app.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/");
+});
+
+
+
+app.get('/:id', async(req, res) => {
+
+    const article = await Article.findOne({ _id: ObjectID(req.params.id) })
+
+    if (article == null) res.redirect('/')
+    res.render('show', { article: article })
+})
+
+
 app.get('/userprofile', (req, res) => {
     res.render('userprofile', { user: req.params.username });
 
@@ -131,13 +141,6 @@ app.post('/new', async(req, res) => {
         console.log(e)
     }
 })
-
-//logout
-app.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect("/");
-});
-
 
 //MIDDLEWARE
 function isLoggedIn(req, res, next) {
