@@ -79,9 +79,11 @@ app.use(passport.session());
 //-----------------------------------------------
 
 
-app.get("/userprofile", isLoggedIn, (req, res) => {
+app.get("/userprofile", isLoggedIn, async(req, res) => {
     var user = req.user;
-    res.render("userprofile", { title: 'userprofile', user: user });
+    const articles = await Article.find().sort({ createdAt: 'desc' })
+    res.render("userprofile", { title: 'userprofile', user: user, articles: articles });
+    // res.render("userprofile", { title: 'userprofile', user: user });
 });
 
 
@@ -114,7 +116,7 @@ app.get('/new', (req, res) => {
 app.post('/new', async(req, res) => {
     req.article = new Article()
     let article = req.article
-    article.username = req.user
+    article.username = req.user.id
     article.title = req.body.title
     article.description = req.body.description
     article.markdown = req.body.markdown
@@ -122,18 +124,21 @@ app.post('/new', async(req, res) => {
     try {
         article = await article.save()
         var user = req.user;
-        res.render("userprofile", { title: 'userprofile', user: user });
+        const articles = await Article.find().sort({ createdAt: 'desc' })
+        res.render("userprofile", { title: 'userprofile', user: user, articles: articles });
     } catch (e) {
         console.log(e)
     }
 })
+app.post('/:id', async(req, res) => {
+    const idString = req.params.id.toString();
+    let article = await Article.findOne({ _id: idString })
 
-app.get('/:id', async(req, res) => {
 
-    const article = await Article.findOne({ _id: ObjectID(req.params.id) })
+    res.render('show', { article: article })
 
     if (article == null) res.redirect('/')
-    res.render('show', { article: article })
+
 })
 
 
