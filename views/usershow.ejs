@@ -20,7 +20,10 @@
             <%= article.createdAt.toLocaleDateString() %>
         </div>
         <a href="/userprofile" class="btn btn-secondary">All Articles</a>
-        <a href="/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+        <!-- <a href="/edit/<%= article.id %>" class="btn btn-info">Edit</a> -->
+        <form action="/edit/<%= article.id %>" method="POST">
+            <a href="/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+        </form>
         <div>
             <%= article.description %>
         </div>

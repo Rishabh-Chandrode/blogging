@@ -12,6 +12,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const session = require("express-session");
 const User = require("./models/user");
 var ObjectID = require('mongodb').ObjectID;
+const methodOverride = require('method-override')
 
 // Custom routes
 //const login = require('./routes/login');
@@ -26,6 +27,7 @@ const connectDB = require('./config/db');
 connectDB();
 
 
+app.use(methodOverride('_method'))
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -150,6 +152,36 @@ app.post('/user/:id', async(req, res) => {
     if (article == null) res.redirect('/')
 
 })
+
+// edit article
+
+
+app.get('/edit/:id', async(req, res, next) => {
+    const article = await Article.findById(req.params.id)
+    res.render("edit", { article: article })
+})
+
+app.put('/edit/:id', async(req, res) => {
+    console.log("aa")
+    let article = await Article.findById(req.params.id)
+    article.title = req.body.title
+    article.description = req.body.description
+    article.markdown = req.body.markdown
+    try {
+        article = await article.save()
+        console.log("H")
+        res.redirect("/user/:id")
+    } catch (e) {
+        // res.render(`articles/${path}`, { article: article })
+        console.log(e)
+    }
+})
+
+
+
+
+//---------------------------------------
+
 
 
 app.get('/userprofile', (req, res) => {
