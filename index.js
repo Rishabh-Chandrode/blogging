@@ -162,14 +162,14 @@ app.get('/edit/:id', async(req, res, next) => {
 })
 
 app.put('/edit/:id', async(req, res) => {
-    console.log("aa")
+
     let article = await Article.findById(req.params.id)
     article.title = req.body.title
     article.description = req.body.description
     article.markdown = req.body.markdown
     try {
         article = await article.save()
-        console.log("H")
+
         res.render('usershow', { article: article })
 
     } catch (e) {
