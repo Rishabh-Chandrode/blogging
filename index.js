@@ -170,12 +170,15 @@ app.put('/edit/:id', async(req, res) => {
     try {
         article = await article.save()
         console.log("H")
-        res.redirect("/user/:id")
+        res.render('usershow', { article: article })
+
     } catch (e) {
         // res.render(`articles/${path}`, { article: article })
         console.log(e)
     }
 })
+
+// res.render('usershow', { article: article })
 
 
 
