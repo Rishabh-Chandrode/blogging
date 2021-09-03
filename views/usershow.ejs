@@ -24,6 +24,9 @@
         <form action="/edit/<%= article.id %>" method="POST">
             <a href="/edit/<%= article.id %>" class="btn btn-info">Edit</a>
         </form>
+        <form action="/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
         <div>
             <%= article.description %>
         </div>

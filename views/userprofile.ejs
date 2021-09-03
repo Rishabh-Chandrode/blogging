@@ -55,9 +55,17 @@
                         <%= article.description %>
                     </p>
                     <!-- <a href="<%= article.id %>" class="btn btn-primary">Read more</a> -->
-                    <form action="user/<%= article.id %>" method="POST">
-                        <button class="btn btn-primary"> Read More</button>
-                    </form>
+                    <div class="buttons" style="display: flex;justify-content:space-evenly; ">
+                        <form action="user/<%= article.id %>" method="POST">
+                            <button class="btn btn-primary"> Read More</button>
+                        </form>
+                        <form action="/edit/<%= article.id %>" method="POST">
+                            <a href="/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+                        </form>
+                        <form action="/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <% }) %>

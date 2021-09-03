@@ -180,6 +180,10 @@ app.put('/edit/:id', async(req, res) => {
 
 // res.render('usershow', { article: article })
 
+app.delete('/:id', async(req, res) => {
+    await Article.findByIdAndDelete(req.params.id)
+    res.redirect('/userprofile')
+})
 
 
 
