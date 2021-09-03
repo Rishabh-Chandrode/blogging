@@ -39,12 +39,12 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', async(req, res) => {
     const articles = await Article.find().sort({ createdAt: 'desc' })
-    res.render('index', { articles: articles })
+    res.render('inde', { articles: articles })
 })
 
 
 // app.get('/show', (req, res) => {
-//     res.render('show');
+//     res.render('s
 // })
 
 
