@@ -140,6 +140,16 @@ app.post('/:id', async(req, res) => {
     if (article == null) res.redirect('/')
 
 })
+app.post('/user/:id', async(req, res) => {
+    const idString = req.params.id.toString();
+    let article = await Article.findOne({ _id: idString })
+
+
+    res.render('usershow', { article: article })
+
+    if (article == null) res.redirect('/')
+
+})
 
 
 app.get('/userprofile', (req, res) => {
