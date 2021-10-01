@@ -83,7 +83,8 @@ app.use(passport.session());
 
 app.get("/userprofile", isLoggedIn, async(req, res) => {
     var user = req.user;
-    const articles = await Article.find().sort({ createdAt: 'desc' })
+    var username = req.user.id;
+    const articles = await Article.find({ username: username }).sort({ createdAt: 'desc' })
     res.render("userprofile", { title: 'userprofile', user: user, articles: articles });
     // res.render("userprofile", { title: 'userprofile', user: user });
 });
